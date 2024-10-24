@@ -1,25 +1,33 @@
 import streamlit as st
 import requests
 
-st.write("## 회원 정보 변경 또는 회원 탈퇴를 원하시면 ID를 입력해주세요")
-user_id = st.test_input("ID","")
-user_id
-url = "http://localhost:8888/login/"
-def delete_data():
-    if st.button("Submit"):
-        if user_id:
-            params = {'id':f'{user_id}'}
-            try:
-                r = requests.delete(url=url,params = params)
-                if r.status_code == 200:
-                    st.write(f"{user_id}님의 탈퇴가 완료되었습니다. 다음에 만나요!>
-😥")
-                else:
-                    st.write(f"{user_id}님의 정보가 없습니다. ID를 다시 확인한 후 >
-입력해주세요 !")
-            except Exception as e:
-                st.write('페이지가 응답하지 않습니다. 다시 접속해 주세요!')
-        else:
-            st.wirte("ID를 입력해주세요")
+st.write("## 회원 탈퇴를 위해서 ID를 입력해주세요")
+user_id = st.text_input("ID","")
 
-delete_data() 
+url = "http://localhost:8888/login/"
+
+def change_page():
+    try:
+        r = requests.get(url)
+        d = r.json()
+        return d
+    except:
+        st.write("서버 연결이 불안정합니다. 다시 접속해주세요!")
+        
+        colums = 
+        df = pd.DataFrame(d)
+        st.write(d)
+        return None
+def select_column():
+    user_firstname = st.text_input("fisrtname","")
+    user_lastname = st.text_input("lastname", "")
+    user_passwd = st.test_input("password","")
+    user_email = st.test_input("email","")
+    user_gender = st.test_input("gender","")
+    user_birthday = st.test_inpu("birthday", "")
+    user_phonenumber = st.test_input("phonenumber","")
+    if user_id:
+        if user
+
+
+

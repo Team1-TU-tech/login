@@ -38,7 +38,7 @@ public class ApiController {
     }
 
     // U - UPDATE
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public void updateLogin(@PathVariable String id, @RequestBody LoginEntity loginEntity) {
         System.out.println("[Controller] Update login with id: " + id);
         loginEntity.setId(id);

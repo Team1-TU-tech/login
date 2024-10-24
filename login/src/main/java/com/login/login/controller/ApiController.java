@@ -9,50 +9,53 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.login.login.entity.LoginEntity;
+import com.login.login.service.LoginService;
+
 import java.util.List;
 
 @RestController
 public class ApiController {
 
     @Autowired
-    TodoService todoService;
+    LoginService loginService;
 
-    @GetMapping("/todos")
+    @GetMapping("/login")
     public List<LoginEntity> list() {
         System.out.println("[Controller]");
-        List<LoginEntity> r = todoService.getTodos();
+        List<LoginEntity> r = loginService.getLogin();
         return r;
     }
 
-    @GetMapping("/todos/{id}")
-    public LoginEntity find(@PathVariable Integer id) {
-        LoginEntity r = todoService.findById(id);
+    @GetMapping("/login/{num}")
+    public LoginEntity find(@PathVariable Integer num) {
+        LoginEntity r = loginService.findByNum(num);
         return r;
     }
 
     // C - INSERT
-    @PostMapping("/todos")
-    public void createTodo(@RequestBody LoginEntity todoEntity) {
-        System.out.println("[Controller]" + todoEntity.toString());
-        todoService.createTodo(todoEntity);
+    @PostMapping("/login")
+    public void createLogin(@RequestBody LoginEntity loginEntity) {
+        System.out.println("[Controller]" + loginEntity.toString());
+        loginService.createLogin(loginEntity);
         System.out.println("INSERT SUCCESSED");
 
     }
 
     // U - UPDATE
-    @PutMapping("/todos/{id}")
-    public void updateTodo(@PathVariable Integer id, @RequestBody LoginEntity todoEntity) {
-        todoEntity.setId(id);
-        todoService.updateTodoById(id, todoEntity);
+    @PutMapping("/login/{num}")
+    public void updateLogin(@PathVariable Integer num, @RequestBody LoginEntity loginEntity) {
+        loginEntity.setNum(num);
+        loginService.updateLoginByNum(num, loginEntity);
         System.out.println("UPDATE SUCCESSED");
 
     }
 
     // D - DELETE
-    @DeleteMapping("/todos/{id}")
-    public void deleteTodo(@PathVariable Integer id) {
-        todoService.deleteTodoById(id);
-        System.out.println(id + "DELETE SUCCESSED");
+    @DeleteMapping("/login/{num}")
+    public void deleteLogin(@PathVariable Integer num) {
+        loginService.deleteLoginByNum(num);
+        System.out.println(num + "DELETE SUCCESSED");
 
     }
 }

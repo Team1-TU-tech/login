@@ -14,7 +14,7 @@ public class LoginEntity {
     private String id;
     private String passwd;
     private String email;
-    private String jender;
+    private String gender;
     private String birthday;
     private String phonenumber;
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public interface LoginMapper {
     List<LoginEntity> findAll();
 
-    LoginEntity findByNum(Integer num);
+    LoginEntity findById(String id);
 
     void createLogin(String firstname, String lastname, String id, String passwd, String email, String gender,
             String birthday, String phonenumber);

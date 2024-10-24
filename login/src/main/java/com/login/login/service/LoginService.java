@@ -21,8 +21,8 @@ public class LoginService {
         return login;
     }
 
-    public LoginEntity findByNum(Integer num) {
-        return loginMapper.findByNum(num);
+    public LoginEntity findById(String id) {
+        return loginMapper.findById(id);
     }
 
     public void createLogin(LoginEntity loginEntity) {

@@ -3,10 +3,10 @@ package com.login.login.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.login.login.entity.LoginEntity;
@@ -27,9 +27,9 @@ public class ApiController {
         return r;
     }
 
-    @GetMapping("/login/{num}")
-    public LoginEntity find(@PathVariable Integer num) {
-        LoginEntity r = loginService.findByNum(num);
+    @GetMapping("/login")
+    public LoginEntity find(@RequestParam String id) {
+        LoginEntity r = loginService.findById(id);
         return r;
     }
 
@@ -43,8 +43,8 @@ public class ApiController {
     }
 
     // U - UPDATE
-    @PutMapping("/login?id={id}")
-    public void updateLogin(@PathVariable String id, @RequestBody LoginEntity loginEntity) {
+    @PutMapping("/login")
+    public void updateLogin(@RequestParam String id, @RequestBody LoginEntity loginEntity) {
         loginEntity.setId(id);
         loginService.updateLoginById(id, loginEntity);
         System.out.println("UPDATE SUCCESSED");
@@ -52,8 +52,8 @@ public class ApiController {
     }
 
     // D - DELETE
-    @DeleteMapping("/login?id={id}")
-    public void deleteLogin(@PathVariable String id) {
+    @DeleteMapping("/login")
+    public void deleteLogin(@RequestParam String id) {
         loginService.deleteLoginById(id);
         System.out.println(id + "DELETE SUCCESSED");
 

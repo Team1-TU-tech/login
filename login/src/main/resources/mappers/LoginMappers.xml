@@ -9,11 +9,11 @@
                 ORDER BY num DESC
         </select>
 
-        <select id="findByNum" parameterType="int" resultType="com.login.login.entity.LoginEntity">
+        <select id="findById" parameterType="String" resultType="com.login.login.entity.LoginEntity">
         SELECT
 					NUM, FIRSTNAME, LASTNAME, ID, PASSWD, EMAIL, GENDER, BIRTHDAY, PHONENUMBER
 				FROM LOGIN_TB 
-				WHERE num = #{num};
+				WHERE id = #{id};
     </select>
 
         <insert id="createLogin">

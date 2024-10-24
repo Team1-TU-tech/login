@@ -13,7 +13,6 @@ def kakao_callback(auth_code):
         'redirect_uri': redirect_uri,
         'code': auth_code
     }
-    st.write(token_data)
 
     token_response = requests.post(token_url, data=token_data)
     token_json = token_response.json()
@@ -33,7 +32,6 @@ def kakao_callback(auth_code):
         st.write("로그인 성공!")
         st.write(user_info)
     else:
-        st.write(access_token + ":::::::::::::::::")
         st.write("로그인 실패")
     
     token_response = requests.post(token_url, data=token_data)

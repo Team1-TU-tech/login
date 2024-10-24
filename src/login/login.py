@@ -2,9 +2,9 @@ import streamlit as st
 
 def kakao_login():
     kakao_auth_url = "https://kauth.kakao.com/oauth/authorize"
-    client_id = "YOUR_CLIENT_ID"
-    client_id = "94f58b0bb01d419714f800fd52e3483c"
-    redirect_uri = "http://localhost:8040"
+    # client_id = "94f58b0bb01d419714f800fd52e3483c"
+    client_id = "10570123f64afae6f4d4e06f75cffced"
+    redirect_uri = "http://localhost:8501/callback"
     response_type = "code"
 
     # 인증 URL 생성
@@ -15,4 +15,3 @@ def kakao_login():
 
 st.title("Kakao Login Example")
 kakao_login()
-

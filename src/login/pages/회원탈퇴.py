@@ -1,13 +1,24 @@
 import streamlit as st
 import requests
-
+st.title("회원 정보 변경")
 st.write("## 회원 정보 변경을 위해 ID를 입력해주세요")
 user_id = st.text_input("ID","")
 
-url = "http://localhost:8888/login/"
+url = 'http://localhost:8888/login'
+def load_data():
+    try:
+        r = requests.get(url)
+        d= r.json()
+
+        return d
+
+    except ConnectionError:
+        st.write("서버가 불안정합니다. 다시 접속해주세요 !")
+
 def delete_data():
+    logindata = load_data()
     if st.button("Submit"):
-        if user_id:
+        if logindata['id']==user_id:
             params = {'id':f'{user_id}'}
             try:
                 r = requests.delete(url=url,params = params)

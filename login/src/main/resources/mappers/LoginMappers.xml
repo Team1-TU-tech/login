@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.login.login.mapper.LoginMapper">
+        <select id="findAll" resultType="com.login.login.entity.LoginEntity">
+                SELECT
+                        NUM, FIRSTNAME, LASTNAME, ID, PASSWD, EMAIL, GENDER, BIRTHDAY, PHONENUMBER
+                FROM LOGIN_TB
+                ORDER BY num DESC
+        </select>
+
+        <select id="findByNum" parameterType="int" resultType="com.login.login.entity.LoginEntity">
+        SELECT
+					NUM, FIRSTNAME, LASTNAME, ID, PASSWD, EMAIL, GENDER, BIRTHDAY, PHONENUMBER
+				FROM LOGIN_TB 
+				WHERE num = #{num};
+    </select>
+
+        <insert id="createLogin">
+        INSERT INTO LOGIN_TB(FIRSTNAME, LASTNAME, ID, PASSWD, EMAIL, GENDER, BIRTHDAY, PHONENUMBER)
+        VALUES (#{firstname}, #{lastname}, #{id}, #{passwd}, #{email}, #{gender}, #{birthday}, #{phonenumber})
+        </insert>
+
+        <update id="updateLoginByNum">
+        UPDATE LOGIN_TB
+        SET firstname = #{firstname}, lastname = #{lastname}, id = #{id}, passwd = #{passwd}, email = #{email}, gender = #{gender}, birthday = #{birthday}, phonenumber = #{phonenumber}
+        WHERE id = #{id}
+        </update>
+
+        <delete id="deleteLoginByNum">
+        DELETE FROM LOGIN_TB
+        WHERE id = #{id}
+        </delete>
+
+</mapper>

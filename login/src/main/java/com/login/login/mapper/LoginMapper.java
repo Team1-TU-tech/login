@@ -15,7 +15,7 @@ public interface LoginMapper {
     void createLogin(String firstname, String lastname, String id, String passwd, String email, String gender,
             String birthday, String phonenumber);
 
-    void updateLoginByNum(LoginEntity loginEntity);
+    void updateLoginById(LoginEntity loginEntity);
 
-    void deleteLoginByNum(Integer num);
+    void deleteLoginById(String id);
 }

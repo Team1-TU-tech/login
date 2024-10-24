@@ -43,19 +43,19 @@ public class ApiController {
     }
 
     // U - UPDATE
-    @PutMapping("/login/{num}")
-    public void updateLogin(@PathVariable Integer num, @RequestBody LoginEntity loginEntity) {
-        loginEntity.setNum(num);
-        loginService.updateLoginByNum(num, loginEntity);
+    @PutMapping("/login?id={id}")
+    public void updateLogin(@PathVariable String id, @RequestBody LoginEntity loginEntity) {
+        loginEntity.setId(id);
+        loginService.updateLoginById(id, loginEntity);
         System.out.println("UPDATE SUCCESSED");
 
     }
 
     // D - DELETE
-    @DeleteMapping("/login/{num}")
-    public void deleteLogin(@PathVariable Integer num) {
-        loginService.deleteLoginByNum(num);
-        System.out.println(num + "DELETE SUCCESSED");
+    @DeleteMapping("/login?id={id}")
+    public void deleteLogin(@PathVariable String id) {
+        loginService.deleteLoginById(id);
+        System.out.println(id + "DELETE SUCCESSED");
 
     }
 }

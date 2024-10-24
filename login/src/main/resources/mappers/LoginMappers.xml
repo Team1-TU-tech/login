@@ -21,13 +21,13 @@
         VALUES (#{firstname}, #{lastname}, #{id}, #{passwd}, #{email}, #{gender}, #{birthday}, #{phonenumber})
         </insert>
 
-        <update id="updateLoginByNum">
+        <update id="updateLoginById">
         UPDATE LOGIN_TB
         SET firstname = #{firstname}, lastname = #{lastname}, id = #{id}, passwd = #{passwd}, email = #{email}, gender = #{gender}, birthday = #{birthday}, phonenumber = #{phonenumber}
         WHERE id = #{id}
         </update>
 
-        <delete id="deleteLoginByNum">
+        <delete id="deleteLoginById">
         DELETE FROM LOGIN_TB
         WHERE id = #{id}
         </delete>

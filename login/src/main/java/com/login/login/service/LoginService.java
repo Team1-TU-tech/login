@@ -31,13 +31,13 @@ public class LoginService {
                 loginEntity.getPhonenumber());
     }
 
-    public void updateLoginByNum(Integer num, LoginEntity loginEntity) {
-        loginEntity.setNum(num);
-        loginMapper.updateLoginByNum(loginEntity);
+    public void updateLoginById(String id, LoginEntity loginEntity) {
+        loginEntity.setId(id);
+        loginMapper.updateLoginById(loginEntity);
     }
 
-    public void deleteLoginByNum(Integer num) {
-        loginMapper.deleteLoginByNum(num);
+    public void deleteLoginById(String id) {
+        loginMapper.deleteLoginById(id);
     }
 
 }

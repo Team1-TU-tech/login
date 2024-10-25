@@ -41,16 +41,17 @@ def check_userid(userid):
     url = f'http://127.0.0.1:8888/login/find?id={userid}'
     try:
         r = requests.get(url)
-        if r.status_code == 200:  # 아이디가 존재할 때
-            st.session_state['id_check'] = '이미 존재하는 아이디입니다.'
-        elif r.status_code == 500:  # 아이디가 존재하지 않을 때
-            st.session_state['id_check'] = '사용 가능한 아이디입니다.'
-            st.write(f"Status Code: {r.status_code}")
-        #else:
-        #    st.session_state['id_check'] = '아이디 확인 중 문제가 발생했습니다.'
+        data = r.json()  # 서버에서 반환된 JSON 데이터
+        if isinstance(data, list) and len(data) > 0 and 'id' in data[0]:
+            return True  # 아이디가 존재하는 경우
+        else:
+            return False  # 아이디가 존재하지 않는 경우
     except requests.ConnectionError:
-        st.write("서버가 불안정합니다.")
-        st.session_state['id_check'] = '서버 연결 실패'
+        st.write("서버가 불안정합니다. 다시 접속해주세요!")
+        return None
+    except ValueError:
+        st.write("서버에서 올바르지 않은 데이터를 받았습니다.")
+        return None
 
 # 페이지 이동 함수
 def redirect_page():
@@ -68,10 +69,16 @@ def show_signup_form():
     userid = st.text_input("아이디")
 
     if st.button("아이디 중복 확인"):
-        if check_userid(userid): # 아이디 중복 확인 요청
-            st.write(st.session_state['id_check'])
-        if st.session_state['id_check']:
-            st.write(st.session_state['id_check'])  # 중복 확인 결과 출력
+        is_existing = check_userid(userid)
+        if is_existing is False:  # 중복된 아이디일 경우
+            st.session_state['id_check'] = '이미 존재하는 아이디입니다.'
+        else:
+            st.session_state['id_check'] = '사용 가능한 아이디입니다.'
+        st.rerun()  # 상태 업데이트 후 페이지 다시 렌더링
+
+    # 중복 확인 결과 출력
+    if 'id_check' in st.session_state:
+        st.write(st.session_state['id_check'])
 
     passwd = st.text_input("비밀번호", type="password")
     email = st.text_input("이메일")
@@ -89,10 +96,8 @@ def show_signup_form():
 # 가입 성공 페이지
 def show_success_page():
     st.title("가입이 완료되었습니다!")
-    st.write("환영합니다!")
-    #if st.button("로그인 하기"):
-    #    st.session_state['page'] = 'main'  # 다시 메인 페이지로 이동
-        #st.rerun() #바로 리다이렉트
+    st.success("환영합니다!")
+    st.page_link("login.py", label="로그인")
 
 # 메인 로직 (페이지 이동 처리)
 redirect_page()

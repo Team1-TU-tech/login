@@ -6,3 +6,6 @@ enableStaticServing = true
 #backgroundColor="#63f791"
 #secondaryBackgroundColor="#80abff"
 #textColor="#2f922f"
+
+[client]
+showSidebarNavigation = false

@@ -23,6 +23,7 @@ def login(id, password):
             st.session_state['logged_in'] = True
             st.session_state['id'] = id
             st.success(f"Welcome {user['firstname']} {user['lastname']}!")
+            st.rerun()
             return
     st.error("아이디 혹은 비밀번호가 일치하지 않습니다.")
 

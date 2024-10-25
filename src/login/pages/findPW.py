@@ -2,6 +2,14 @@ import streamlit as st
 import requests as reqs
 import smtplib
 from email.message import EmailMessage
+import random
+import string
+
+# 무작위 비밀번호 생성 함수
+def generate_random_password(length=8):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
 
 # SMTP 연결 및 이메일 전송 함수
 def send_email(to_email):
@@ -12,12 +20,15 @@ def send_email(to_email):
         s.starttls()  # TLS 보안 설정
         s.login("oddsummer56@gmail.com", "oopk dcmo unsg bwdl")  # 본인 이메일과 앱 비밀번호 필요
 
+        # 무작위 비밀번호 생성
+        random_password = generate_random_password()
+
         # 메일 메시지 작성
         message = EmailMessage()
-        message['Subject'] = "제목"
+        message['Subject'] = "패스워드 찾기 요청"
         message['From'] = "oddsummer56@gmail.com"
         message['To'] = to_email
-        message.set_content("랜덤 비밀번호")
+        message.set_content(f"요청하신 임시 비밀번호는 다음과 같습니다:\n\n{random_password}")
 
         # 메일 전송 및 세션 종료
         s.send_message(message)

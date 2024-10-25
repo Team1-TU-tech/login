@@ -1,6 +1,21 @@
 import streamlit as st
 import requests
 
+import os
+
+if 'login_token' not in st.session_state:
+    st.session_state['login_token'] = None
+
+
+def logout():
+    params = {
+        'client_id': "10570123f64afae6f4d4e06f75cffced",
+        'logout_redirect_uri': "http://localhost:8501/",
+    }
+    logout_url = f"https://kauth.kakao.com/oauth/logout?client_id={params['client_id']}&logout_redirect_uri={params['logout_redirect_uri']}"
+
+    return logout_url
+
 def kakao_callback(auth_code):
     token_url = "https://kauth.kakao.com/oauth/token"
     client_id = "10570123f64afae6f4d4e06f75cffced"
@@ -13,6 +28,7 @@ def kakao_callback(auth_code):
         'redirect_uri': redirect_uri,
         'code': auth_code
     }
+
 
     token_response = requests.post(token_url, data=token_data)
     token_json = token_response.json()
@@ -27,15 +43,25 @@ def kakao_callback(auth_code):
         }
         user_info_response = requests.get(user_info_url, headers=headers)
         user_info = user_info_response.json()
-        
+
+        st.session_state['login_token'] = access_token
+        st.write(access_token)
+
         # 사용자 정보 표시
         st.write("로그인 성공!")
         st.write(user_info)
+        st.title("Kakao Logout Example")
+        #st.button("logout", on_click=logout)
+        st.link_button("logout", url=logout())
+
     else:
         st.write("로그인 실패")
-    
-    token_response = requests.post(token_url, data=token_data)
-    st.write(f"토큰 요청 응답: {token_response.text}")
+        #st.switch_page("login.py")
+
+
+
+    st.write(token_url)
+    st.write(token_data)
 
 # 카카오에서 리디렉션된 후, 제공된 인증 코드를 가져옴
 #auth_code = st.query_params["code"]#.get("code")
@@ -48,4 +74,12 @@ if auth_code:
     kakao_callback(auth_code)
 else:
     st.write("인증 코드가 없습니다.")
+
+
+
+
+
+
+
+
 

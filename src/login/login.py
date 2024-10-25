@@ -70,7 +70,12 @@ def kakao_login():
     auth_url = f"{kakao_auth_url}?client_id={client_id}&redirect_uri={redirect_uri}&response_type={response_type}"
     
     # 링크 버튼을 사용하여 Kakao 로그인 페이지로 리디렉션
-    st.link_button("카카오 로그인", url=auth_url)
+    # st.link_button("카카오 로그인", url=auth_url)
+
+    html = f"<a href='{auth_url}'><img src='./app/static/kakao.png'></a>"
+    st.markdown(html, unsafe_allow_html=True)
+
+
 
 
 kakao_login()

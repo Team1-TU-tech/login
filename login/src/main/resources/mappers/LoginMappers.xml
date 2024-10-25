@@ -40,9 +40,19 @@
 
         <update id="updateLoginById">
         UPDATE LOGIN_TB
-        SET firstname = #{firstname}, lastname = #{lastname}, id = #{id}, passwd = #{passwd}, email = #{email}, gender = #{gender}, birthday = #{birthday}, phonenumber = #{phonenumber}
-        WHERE id = #{id}
-        </update>
+        <set>
+        <!-- null이 아닌 필드만 업데이트 -->
+        <if test="firstname != null">firstname = #{firstname},</if>
+        <if test="lastname != null">lastname = #{lastname},</if>
+        <if test="id != null">id = #{id},</if>
+        <if test="passwd != null">passwd = #{passwd},</if>
+        <if test="email != null">email = #{email},</if>
+        <if test="gender != null">gender = #{gender},</if>
+        <if test="birthday != null">birthday = #{birthday},</if>
+        <if test="phonenumber != null">phonenumber = #{phonenumber},</if>
+    </set>
+    WHERE id = #{id}
+    </update>
 
         <delete id="deleteLoginById">
         DELETE FROM LOGIN_TB

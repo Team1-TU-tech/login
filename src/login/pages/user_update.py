@@ -2,11 +2,11 @@ import requests
 import streamlit as st  
 
 st.title("회원 정보 수정")
-st.write("### 회원 정보 수정을 원하시면 ID를 입력해주세요!")
-user_id = st.text_input("id","")
+st.write("### ID를 입력 후 `ENTER`를 눌러주세요!")
+user_id = st.text_input("아이디","")
 url =f'http://localhost:8888/login'
 #url =f'http://localhost:8888/login/{user_id}'ID
-st.write("회원정보가 없으면 상세 정보 입력란이 보이지 않습니다. 회원가입 후 다시 시도해주세요!")
+st.write("#### 회원정보가 없으면 상세 정보 입력란이 보이지 않습니다. 회원가입 후 다시 시도해주세요!")
 
 if "is_submitted" not in st.session_state:
     st.session_state.is_submitted = False
@@ -37,13 +37,14 @@ def show_update():
 def patch_data():
 
     # 동적 파라미터를 위한 초기 딕셔너리
-    user_firstname = st.text_input("Firstname")
-    user_lastname = st.text_input("Lastname")
-    user_passwd = st.text_input("Password")
-    user_email = st.text_input("Email")
-    user_gender = st.text_input("Gender")
-    user_birthday = st.text_input("Birthday")
-    user_phonenumber = st.text_input("Phonenumber")
+    user_firstname = st.text_input("이름")
+    user_lastname = st.text_input("성")
+    user_passwd = st.text_input("비밀번호",type='password')
+    user_email = st.text_input("이메일")
+    g=['F','M']
+    user_gender = st.multiselect("성별",g)
+    user_birthday = st.date_input("생년월일")
+    user_phonenumber = st.text_input("전화번호")
     
     url = f'http://localhost:8888/login/{user_id}'  # 본인의 URL로 수정
     headers = {'Content-Type': 'application/json'}

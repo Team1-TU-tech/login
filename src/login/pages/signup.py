@@ -98,7 +98,7 @@ def show_success_page():
     st.title("가입이 완료되었습니다!")
     st.success("환영합니다!")
     st.page_link("login.py", label="로그인")
-    st.write(st.session_state)
+    # st.write(st.session_state)
 
 
 # 메인 로직 (페이지 이동 처리)

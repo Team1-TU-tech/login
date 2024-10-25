@@ -1,6 +1,7 @@
 import streamlit as st
 import requests as reqs
-
+import bcrypt
+import base64
 import os
 
 st.session_state['page'] = None
@@ -48,13 +49,17 @@ def kakao_login():
     st.markdown(html, unsafe_allow_html=True)
 ###### 카카오 로그인 버튼 만들기  끝 #######################################################################
 
+# 비밀번호 검증 함수
+def check_password(passwd, hashed):
+    return bcrypt.checkpw(passwd.encode(), hashed.encode())
 
 # 로그인 함수
 def login(id, password):
     users = load_data()
+
     # 유저 검증
     for user in users:
-        if user['id'] == id and user['passwd'] == password:
+        if user['id'] == id and check_password(password, user['passwd']):
             st.session_state['logged_in'] = True
             st.session_state['id'] = id
             st.success(f"Welcome {user['firstname']} {user['lastname']}!")
@@ -80,11 +85,15 @@ def login_screen():
             login(userid, password)
         else:
             st.error("아이디와 비밀번호를 입력해주세요.")
-    if columns[2].button("아이디 찾기"):
-        st.switch_page("pages/find.py")
 
     if columns[1].button("회원 가입"):
         st.switch_page("pages/signup.py")
+
+    if columns[2].button("아이디 찾기"):
+        st.switch_page("pages/findID.py")
+
+    if columns[3].button("비밀번호 찾기"):
+        st.switch_page("pages/findPW.py")
     
 
 
@@ -113,6 +122,5 @@ if st.session_state['logged_in']:
     main_app()
 else:
     login_screen()
-
 
 

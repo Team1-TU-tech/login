@@ -6,7 +6,6 @@ st.write("### ID를 입력 후 `ENTER`를 눌러주세요!")
 user_id = st.text_input("아이디","")
 url =f'http://localhost:8888/login'
 #url =f'http://localhost:8888/login/{user_id}'ID
-st.write("#### 회원정보가 없으면 상세 정보 입력란이 보이지 않습니다. 회원가입 후 다시 시도해주세요!")
 
 if "is_submitted" not in st.session_state:
     st.session_state.is_submitted = False

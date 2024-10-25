@@ -4,6 +4,20 @@
 로그인 기능을 위한 REST API를 Java로 구현하고, Spring REST를 연동하여 CRUD 작업을 처리했습니다. 메인 로그인 페이지는 Streamlit으로 제작되었으며, 카카오 로그인 연동을 지원합니다.
 
 
+## 목차
+- [기술스택](#기술스택)
+- [개발기간](#개발기간)
+- [주요 기능](#주요-기능)
+- [데이터베이스 구조](#데이터베이스-구조)
+- [사용방법](#사용방법)
+- [Streamlit 접속](#Streamlit-접속)
+- [시연영상](#시연영상)
+- [회고](#회고)
+- [Contributors](#Contributors)
+- [License](#License)
+- [문의](#문의)
+
+
 ## 기술스택
 <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=Python&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=F5F7F8"/> 
 <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=Streamit&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=Spring Boot&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=F5F7F8"/>

@@ -64,7 +64,7 @@ def redirect_page():
 
 def hash_password(passwd):
     # bcrypt 해시를 생성하고 문자열로 변환
-    hashed = bcrypt.hashpw(passwd.encode(), bcrypt.gensalt())
+    hashed = bcrypt.hashpw(passwd.encode(), bcrypt.gensalt(rounds=5)) #해시화 5번
     return hashed.decode('utf-8')  # 문자열로 변환 후 리턴
 
 # 비밀번호 검증 함수

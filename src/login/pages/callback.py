@@ -1,15 +1,15 @@
 import streamlit as st
-import requests
+import requests as reqs
 
 import os
 
-if 'login_token' not in st.session_state:
-    st.session_state['login_token'] = None
+if 'klogin_token' not in st.session_state:
+    st.session_state['klogin_token'] = None
 
 
 def logout():
     params = {
-        'client_id': "10570123f64afae6f4d4e06f75cffced",
+        'client_id': os.getenv("KAKAO_TOKEN",""),
         'logout_redirect_uri': "http://localhost:8501/",
     }
     logout_url = f"https://kauth.kakao.com/oauth/logout?client_id={params['client_id']}&logout_redirect_uri={params['logout_redirect_uri']}"
@@ -18,7 +18,7 @@ def logout():
 
 def kakao_callback(auth_code):
     token_url = "https://kauth.kakao.com/oauth/token"
-    client_id = "10570123f64afae6f4d4e06f75cffced"
+    client_id = os.getenv("KAKAO_TOKEN","")
     redirect_uri = "http://localhost:8501/callback"
     
     # 토큰 요청
@@ -30,7 +30,7 @@ def kakao_callback(auth_code):
     }
 
 
-    token_response = requests.post(token_url, data=token_data)
+    token_response = reqs.post(token_url, data=token_data)
     token_json = token_response.json()
     
     access_token = token_json.get("access_token")
@@ -41,18 +41,22 @@ def kakao_callback(auth_code):
         headers = {
             "Authorization": f"Bearer {access_token}"
         }
-        user_info_response = requests.get(user_info_url, headers=headers)
+        user_info_response = reqs.get(user_info_url, headers=headers)
         user_info = user_info_response.json()
 
-        st.session_state['login_token'] = access_token
+        st.session_state['klogin_token'] = access_token
         st.write(access_token)
 
         # 사용자 정보 표시
         st.write("로그인 성공!")
-        st.write(user_info)
-        st.title("Kakao Logout Example")
-        #st.button("logout", on_click=logout)
-        st.link_button("logout", url=logout())
+        st.session_state['id']=user_info["kakao_account"]["profile"]["nickname"]
+        st.session_state['logged_in']=True
+        st.switch_page("login.py")
+        # st.write(user_info)
+        # st.title("Kakao Logout Example")
+        # #st.button("logout", on_click=logout)
+        # st.write(user_info["kakao_account"]["profile"]["nickname"])
+        # st.link_button("logout", url=logout())
 
     else:
         st.write("로그인 실패")

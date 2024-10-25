@@ -16,12 +16,9 @@ Spring Rest 연동 CRUD 사용
 
 
 ## 기술스택
-<img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=Python&logoColor=F5F7F8"/>
-![image](https://github.com/user-attachments/assets/8d765cb3-f3c2-4e5f-92fd-457a5472387c)
-![image](https://github.com/user-attachments/assets/9999fdce-b3f0-4e60-9ef3-fddcd4335683)
-![image](https://github.com/user-attachments/assets/25f13002-e07e-40e3-a98f-d15d45553b09)
-![image](https://github.com/user-attachments/assets/f1c93bcd-fa7e-4115-b88e-5fa3a80ed1cb)
-![image](https://github.com/user-attachments/assets/87428359-20f5-439d-ad6b-7a08e25e40b0)
+<img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=Python&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=F5F7F8"/> 
+<img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=Streamit&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=Spring Boot&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=F5F7F8"/>
+
 
 
 

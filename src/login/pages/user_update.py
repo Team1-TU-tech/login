@@ -2,9 +2,9 @@ import requests
 import streamlit as st  
 
 st.title("회원 정보 수정")
-st.write("### ID를 입력 후 `ENTER`를 눌러주세요!")
-user_id = st.text_input("아이디","")
-url =f'http://localhost:8888/login'
+st.write("### 비밀번호를 입력 후 `ENTER`를 눌러주세요!")
+user_passwd = st.text_input("비밀번호",type="password")
+url =f'http://localhost:8888/login/find?passwd={user_passwd}'
 #url =f'http://localhost:8888/login/{user_id}'ID
 
 if "is_submitted" not in st.session_state:
@@ -30,7 +30,7 @@ def load_data():
 def show_update():
     logindata = load_data()
     for i in range(len(logindata)):
-        if logindata[i]['id']==user_id:
+        if logindata[i]['passwd']==user_passwd:
             patch_data()
 
 # 회원정보변경
@@ -46,7 +46,7 @@ def patch_data():
     
     url = f'http://localhost:8888/login/{user_id}'  # 본인의 URL로 수정
     headers = {'Content-Type': 'application/json'}
-    params = {"firstname":user_firstname, "lastname":user_lastname,"id":user_id, "passwd":user_passwd, "email":user_email,  "gender":user_gender, "birthday":user_birthday, "phonenumber":user_phonenumber}
+    params = {"firstname":user_firstname, "lastname":user_lastname, "passwd":user_passwd, "email":user_email,  "gender":user_gender, "birthday":user_birthday, "phonenumber":user_phonenumber}
     if st.button("Submit"):
         try:
             r = requests.patch(url=url, headers=headers, json=params)

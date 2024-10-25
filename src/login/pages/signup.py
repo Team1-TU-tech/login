@@ -99,6 +99,7 @@ def show_success_page():
     st.success("환영합니다!")
     st.page_link("login.py", label="로그인")
 
+
 # 메인 로직 (페이지 이동 처리)
 redirect_page()
 

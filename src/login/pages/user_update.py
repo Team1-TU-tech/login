@@ -1,13 +1,20 @@
 import requests
 import streamlit as st  
+
 st.title("회원 정보 수정")
 st.write("### 회원 정보 수정을 원하시면 ID를 입력해주세요!")
 user_id = st.text_input("id","")
 url =f'http://localhost:8888/login'
 #url =f'http://localhost:8888/login/{user_id}'ID
 st.write("회원정보가 없으면 상세 정보 입력란이 보이지 않습니다. 회원가입 후 다시 시도해주세요!")
+
 if "is_submitted" not in st.session_state:
     st.session_state.is_submitted = False
+
+if st.button("탈퇴하기"):
+    st.switch_page("pages/user_deletion.py")
+
+
 def load_data():
     try:
         r = requests.get(url)
@@ -17,7 +24,8 @@ def load_data():
 
     except ConnectionError:
         st.write("서버가 불안정합니다. 다시 접속해주세요 !")
-
+    if st.button("탈퇴하기"):
+        st.switch_page("pages/user_deletion.py")
 
 # 동적 파라미터를 위한 초기 딕셔너리
 def show_update():
@@ -25,7 +33,7 @@ def show_update():
     for i in range(len(logindata)):
         if logindata[i]['id']==user_id:
             patch_data()
-    
+
 def patch_data():
 
     # 동적 파라미터를 위한 초기 딕셔너리

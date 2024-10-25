@@ -1,5 +1,5 @@
-# TU-tech JAVA PROJECT 
-# Login 기능 구현
+# Login 기능 구현 (TU-tech JAVA PROJECT)
+
 ## 개요
 로그인 기능을 위한 REST API를 Java로 구현하고, Spring REST를 연동하여 CRUD 작업을 처리했습니다. 메인 로그인 페이지는 Streamlit으로 제작되었으며, 카카오 로그인 연동을 지원합니다.
 

@@ -107,7 +107,8 @@ https://github.com/user-attachments/assets/1cb11a56-3f46-4fd6-a9e6-04cbb11d6708
 https://github.com/user-attachments/assets/821fd40b-1ca9-4936-9fb4-7ceb93ad3be4
 
 ### 탈퇴
-https://github.com/user-attachments/assets/2178658e-91bc-4764-b05d-3af81de834e1
+https://github.com/user-attachments/assets/fee8cbb5-b355-487f-b5cc-9a393f2a77e0
+
 <br></br>
 
 

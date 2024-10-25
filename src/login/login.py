@@ -77,7 +77,8 @@ def login_screen():
             login(userid, password)
         else:
             st.error("아이디와 비밀번호를 입력해주세요.")
-
+    if st.button("아이디 찾기"):
+        st.switch_page("pages/find.py")
 # 메인 애플리케이션 화면 (로그인 후 접근 가능)
 def main_app():
     st.title("Main Application")

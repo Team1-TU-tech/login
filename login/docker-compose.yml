@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  database:
+    image: mariadb
+    container_name: login-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_USER: login_user
+      MARIADB_PASSWORD: login_passwd
+      MARIADB_DATABASE: login
+    volumes:
+      - ./src/main/resources/db_config/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 6033:3306
+
+  app:
+    container_name: login-app
+    build: .
+    ports:
+      - 8888:8972
+    restart: always
+    depends_on:
+      - database
+    links:
+      - database
+    platform: linux/amd64
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://database:3306/login

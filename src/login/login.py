@@ -72,17 +72,18 @@ def login_screen():
     st.title("로그인")
     userid = st.text_input("아이디를 입력해주세요.", key="userid_input_1")
     password = st.text_input("비밀번호를 입력해주세요.", type="password", key="password_input_1")
+    columns = [i for i in st.columns(5)]
     kakao_login()     # 카카오 로그인 버튼
     
-    if st.button("Login"):
+    if columns[0].button("Login"):
         if userid and password:  # 입력된 값이 있는지 확인
             login(userid, password)
         else:
             st.error("아이디와 비밀번호를 입력해주세요.")
-    if st.button("아이디 찾기"):
+    if columns[2].button("아이디 찾기"):
         st.switch_page("pages/find.py")
 
-    if st.button("회원 가입"):
+    if columns[1].button("회원 가입"):
         st.switch_page("pages/signup.py")
     
 
@@ -92,13 +93,14 @@ def main_app():
     st.title("TU-Universe-Tech")
     st.write(f"환영합니다, {st.session_state['id']}님!")
     #st.write(st.session_state)
+    columns=[i for i in st.columns(5)]
     if st.session_state['klogin_token']:
-        st.link_button("Logout", url=logout_kakao())
+        columns[0].link_button("Logout", url=logout_kakao())
     else:
-        if st.button("Logout"):
+        if columns[0].button("Logout"):
             logout()
 
-    if st.button("회원정보 수정"):
+    if columns[-1].button("회원정보 수정"):
         st.switch_page("pages/user_update.py")
 
 # 세션 상태 초기화

@@ -16,7 +16,7 @@ Spring Rest 연동 CRUD 사용
 
 
 ## 기술스택
-![image](https://github.com/user-attachments/assets/782f95fa-4c30-4c6c-b8ad-1ab62bf2fed4)
+<img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=Python&logoColor=F5F7F8"/>
 ![image](https://github.com/user-attachments/assets/8d765cb3-f3c2-4e5f-92fd-457a5472387c)
 ![image](https://github.com/user-attachments/assets/9999fdce-b3f0-4e60-9ef3-fddcd4335683)
 ![image](https://github.com/user-attachments/assets/25f13002-e07e-40e3-a98f-d15d45553b09)

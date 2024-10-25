@@ -48,7 +48,7 @@ def patch_data():
     url = f'http://localhost:8888/login/{user_id}'  # 본인의 URL로 수정
     headers = {'Content-Type': 'application/json'}
     params = {"firstname":user_firstname, "lastname":user_lastname,"id":user_id, "passwd":user_passwd, "email":user_email,  "gender":user_gender, "birthday":user_birthday, "phonenumber":user_phonenumber}
-    if st.button("Submit"):
+    if st.button("변경하기"):
         try:
             r = requests.patch(url=url, headers=headers, json=params)
             if r.status_code==200:
@@ -57,8 +57,8 @@ def patch_data():
                 st.write("서버가 불안정합니다. 다시 시도해주세요")
         except:
             st.write(f"다시 시도해주세요")
-    else:
-        st.write("정보를 입력 후 summit 버튼을 눌러주세요")
+    # else:
+    #     st.write("정보를 입력 후 summit 버튼을 눌러주세요")
 
 
 show_update()  

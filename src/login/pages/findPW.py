@@ -25,7 +25,7 @@ def send_email(to_email):
 
         # 메일 메시지 작성
         message = EmailMessage()
-        message['Subject'] = "패스워드 찾기 요청"
+        message['Subject'] = "임시 비밀번호 발급 안내"
         message['From'] = "oddsummer56@gmail.com"
         message['To'] = to_email
         message.set_content(f"요청하신 임시 비밀번호는 다음과 같습니다:\n\n{random_password}")
@@ -59,7 +59,7 @@ if splitView[0].button("찾기"):
     if id and email:
         for user in load_data():
             if user["id"] == id and user["email"] == email:
-                st.success(f"입력하신 정보에 해당하는 ID는 **{user['id']}** 입니다.")
+                st.success(f"입력하신 {user['email']}에 임시 비밀번호가 발급되었습니다.")
                 # 이메일 전송
                 send_email(user["email"])
                 status = False

@@ -5,9 +5,6 @@ import os
 
 st.session_state['page'] = None
 
-if 'id_check' in st.session_state:
-    st.session_state['id_check'] = None
-
 ####### 카카오 토큰 설정 + 로그아웃 #############################
 if 'klogin_token' not in st.session_state:
     st.session_state['klogin_token'] = None

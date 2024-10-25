@@ -13,6 +13,8 @@ def delete_data():
             r = requests.delete(url=url, json = params)
             if r.status_code == 200:
                 st.write(f"{user_id}님의 탈퇴가 완료되었습니다. 다음에 만나요!😥")
+                for k,v in st.session_state.items():
+                    st.session_state[k]=None
                 st.switch_page("login.py")
             else:
                 st.write(f"{user_id}님의 정보가 없습니다. ID를 다시 확인한 후 입력해주세요 !")

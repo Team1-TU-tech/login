@@ -6,11 +6,24 @@ RESTAPI를 java로 구현
 
 Spring Rest 연동 CRUD 사용
 
+
+메인 로그인 페이지 Streamlit으로 구현
+
+
+로그인 페이지 카카오톡과 연동
+
+
+
+
 ## 기술스택
 ![image](https://github.com/user-attachments/assets/782f95fa-4c30-4c6c-b8ad-1ab62bf2fed4)
 ![image](https://github.com/user-attachments/assets/9999fdce-b3f0-4e60-9ef3-fddcd4335683)
 ![image](https://github.com/user-attachments/assets/25f13002-e07e-40e3-a98f-d15d45553b09)
 ![image](https://github.com/user-attachments/assets/f1c93bcd-fa7e-4115-b88e-5fa3a80ed1cb)
+![image](https://github.com/user-attachments/assets/87428359-20f5-439d-ad6b-7a08e25e40b0)
+![image](https://github.com/user-attachments/assets/8d765cb3-f3c2-4e5f-92fd-457a5472387c)
+
+
 
 ## 주요 기능 
 - 전체 회원 정보 조회`GET`

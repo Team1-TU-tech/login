@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 import datetime
+import bcrypt
+import base64
 
 # 페이지 상태를 초기화 (페이지 상태를 세션에서 관리)
 if 'page' not in st.session_state:
@@ -10,14 +12,14 @@ if 'id_check' not in st.session_state:
 
 
 # 서버에 POST 요청을 보내는 함수
-def load_data(firstname, lastname, id, passwd, email, gender, birthday, phonenumber):
-    if firstname and lastname and id and passwd and email and gender and birthday and phonenumber:
+def load_data(firstname, lastname, id, hashed_passwd, email, gender, birthday, phonenumber):
+    if firstname and lastname and id and hashed_passwd and email and gender and birthday and phonenumber:
         headers = {'Content-Type': 'application/json'}
         params = {
             'firstname': firstname,
             'lastname': lastname,
             'id': id,
-            'passwd': passwd,
+            'passwd': hashed_passwd,
             'email': email,
             'gender': gender,
             'birthday': birthday.strftime('%Y-%m-%d'),  # date 객체를 문자열로 변환
@@ -60,9 +62,21 @@ def redirect_page():
     else:
         show_signup_form()
 
+def hash_password(passwd):
+    # bcrypt 해시를 생성하고 문자열로 변환
+    hashed = bcrypt.hashpw(passwd.encode(), bcrypt.gensalt())
+    return hashed.decode('utf-8')  # 문자열로 변환 후 리턴
+
+# 비밀번호 검증 함수
+def check_password(passwd, hashed):
+    decoded_hashed = base64.b64decode(hashed)
+    return bcrypt.checkpw(passwd.encode(), decoded_hashed)
+
+
 # 회원가입 폼
 def show_signup_form():
     st.title("회원가입")
+
 
     firstname = st.text_input("이름")
     lastname = st.text_input("성")
@@ -88,7 +102,8 @@ def show_signup_form():
 
     if st.button("가입하기"):
         if st.session_state['id_check'] == '사용 가능한 아이디입니다.':  # 아이디 사용 가능 여부 확인
-            load_data(firstname, lastname, userid, passwd, email, gender, birthday, phonenumber)
+            hashed_passwd = hash_password(passwd)  # 비밀번호 해시화
+            load_data(firstname, lastname, userid, hashed_passwd, email, gender, birthday, phonenumber)
             st.rerun()
         else:
             st.write("아이디 중복 확인을 해주세요.")
@@ -103,4 +118,3 @@ def show_success_page():
 
 # 메인 로직 (페이지 이동 처리)
 redirect_page()
-

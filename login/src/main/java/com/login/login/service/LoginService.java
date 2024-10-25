@@ -7,6 +7,8 @@ import com.login.login.entity.LoginEntity;
 import com.login.login.mapper.LoginMapper;
 
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class LoginService {
@@ -23,6 +25,20 @@ public class LoginService {
 
     public LoginEntity findById(String id) {
         return loginMapper.findById(id);
+    }
+
+    public LoginEntity findByOptionalParams(String id, String phonenumber, String passwd, String email) {
+        Map<String, Object> params = new HashMap<>();
+        if (id != null)
+            params.put("id", id);
+        if (phonenumber != null)
+            params.put("phonenumber", phonenumber);
+        if (passwd != null)
+            params.put("passwd", passwd);
+        if (email != null)
+            params.put("email", email);
+
+        return loginMapper.findByOptionalParams(params);
     }
 
     public void createLogin(LoginEntity loginEntity) {

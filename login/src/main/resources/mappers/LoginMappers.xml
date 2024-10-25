@@ -16,6 +16,23 @@
 				WHERE id = #{id};
     </select>
 
+        <select id="findByOptionalParams" parameterType="map" resultType="com.login.login.entity.LoginEntity">
+    SELECT * FROM LOGIN_TB
+    WHERE 1=1
+    <if test="id != null">
+        AND ID = #{id}
+    </if>
+    <if test="phonenumber != null">
+        AND PHONENUMBER = #{phonenumber}
+    </if>
+    <if test="password != null">
+        AND PASSWD = #{password}
+    </if>
+    <if test="email != null">
+        AND EMAIL = #{email}
+    </if>
+</select>
+
         <insert id="createLogin">
         INSERT INTO LOGIN_TB(FIRSTNAME, LASTNAME, ID, PASSWD, EMAIL, GENDER, BIRTHDAY, PHONENUMBER)
         VALUES (#{firstname}, #{lastname}, #{id}, #{passwd}, #{email}, #{gender}, #{birthday}, #{phonenumber})

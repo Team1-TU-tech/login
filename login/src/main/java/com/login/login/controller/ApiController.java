@@ -24,9 +24,14 @@ public class ApiController {
 
     // 특정 ID의 로그인 정보 조회 (RequestParam 사용)
     @GetMapping("/find")
-    public LoginEntity find(@RequestParam String id) {
-        System.out.println("[Controller] find login by id: " + id);
-        return loginService.findById(id);
+    public LoginEntity find(@RequestParam(required = false) String id,
+            @RequestParam(required = false) String phonenumber,
+            @RequestParam(required = false) String passwd,
+            @RequestParam(required = false) String email) {
+        if (id != null && phonenumber == null && passwd == null && email == null) {
+            return loginService.findById(id);
+        }
+        return loginService.findByOptionalParams(id, phonenumber, passwd, email);
     }
 
     // C - INSERT

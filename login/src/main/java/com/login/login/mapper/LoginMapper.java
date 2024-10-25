@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.login.login.entity.LoginEntity;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface LoginMapper {
@@ -18,4 +19,7 @@ public interface LoginMapper {
     void updateLoginById(LoginEntity loginEntity);
 
     void deleteLoginById(String id);
+
+    LoginEntity findByOptionalParams(Map<String, Object> params); // 새로 추가한 메서드
+
 }

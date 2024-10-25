@@ -49,9 +49,10 @@ def kakao_login():
     st.markdown(html, unsafe_allow_html=True)
 ###### 카카오 로그인 버튼 만들기  끝 #######################################################################
 
-# 비밀번호 검증 함수
+#비밀번호 검증 함수
 def check_password(passwd, hashed):
     return bcrypt.checkpw(passwd.encode(), hashed.encode())
+
 
 # 로그인 함수
 def login(id, password):
@@ -75,8 +76,8 @@ def logout():
 # 로그인 화면
 def login_screen():
     st.title("로그인")
-    userid = st.text_input("아이디를 입력해주세요.", key="userid_input_1")
-    password = st.text_input("비밀번호를 입력해주세요.", type="password", key="password_input_1")
+    userid = st.text_input("ID", key="userid_input_1")
+    password = st.text_input("PASSWORD", type="password", key="password_input_1")
     columns = [i for i in st.columns(5)]
     kakao_login()     # 카카오 로그인 버튼
     
@@ -100,6 +101,7 @@ def login_screen():
 # 메인 애플리케이션 화면 (로그인 후 접근 가능)
 def main_app():
     st.title("TU-Universe-Tech")
+    
     st.write(f"환영합니다, {st.session_state['id']}님!")
     #st.write(st.session_state)
     columns=[i for i in st.columns(5)]

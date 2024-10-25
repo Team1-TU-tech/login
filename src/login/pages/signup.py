@@ -31,12 +31,12 @@ def load_data(firstname, lastname, id, hashed_passwd, email, gender, birthday, p
             if response.status_code == 200:
                 st.session_state['page'] = 'success'  # 성공 시 페이지 상태 변경
             else:
-                st.write("가입에 실패했습니다. 다시 시도해주세요.")
+                st.error("가입에 실패했습니다. 다시 시도해주세요.")
         except Exception as e:
-            st.write("서버가 불안정하오니 나중에 다시 시도해주세요.")
-            st.write(f"오류: {str(e)}")
+            st.werror("서버가 불안정하오니 나중에 다시 시도해주세요.")
+            st.error(f"오류: {str(e)}")
     else:
-        st.write("모든 항목을 입력해 주세요.")
+        st.error("모든 항목을 입력해 주세요.")
 
 # 서버에 GET 요청을 보내는 함수 (아이디 중복 확인)
 def check_userid(userid):
@@ -100,20 +100,30 @@ def show_signup_form():
     birthday = st.date_input("생년월일", value=None)
     phonenumber = st.text_input("전화번호")
 
-    if st.button("가입하기"):
-        if st.session_state['id_check'] == '사용 가능한 아이디입니다.':  # 아이디 사용 가능 여부 확인
-            hashed_passwd = hash_password(passwd)  # 비밀번호 해시화
-            load_data(firstname, lastname, userid, hashed_passwd, email, gender, birthday, phonenumber)
-            st.rerun()
-        else:
-            st.write("아이디 중복 확인을 해주세요.")
+    # 가입하기 및 back 버튼을 배치할 열 구성
+    splitView = [i for i in st.columns([12, 1])]  
+
+    with splitView[0]:
+        if st.button("가입하기"):
+            if st.session_state['id_check'] == '사용 가능한 아이디입니다.':  # 아이디 사용 가능 여부 확인
+                hashed_passwd = hash_password(passwd)  # 비밀번호 해시화
+                load_data(firstname, lastname, userid, hashed_passwd, email, gender, birthday, phonenumber)
+                st.rerun()
+            else:
+                st.error("아이디 중복 확인을 해주세요.")
+
+    with splitView[1]:
+        if st.button("🔙"):
+            st.session_state['page'] = None
+            st.session_state['id_check'] = None
+            st.switch_page("login.py")
+
 
 # 가입 성공 페이지
 def show_success_page():
     st.title("가입이 완료되었습니다!")
     st.success("환영합니다!")
     st.page_link("login.py", label="로그인")
-    # st.write(st.session_state)
 
 
 # 메인 로직 (페이지 이동 처리)

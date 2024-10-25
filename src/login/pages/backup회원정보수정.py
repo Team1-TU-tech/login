@@ -1,35 +1,8 @@
+import streamlit as st
 import requests
-import streamlit as st  
-st.title("회원 정보 수정")
-st.write("### 회원 정보 수정을 원하시면 ID를 입력해주세요!")
-user_id = st.text_input("id","")
-url =f'http://localhost:8888/login'
-#url =f'http://localhost:8888/login/{user_id}'ID
-st.write("회원정보가 없으면 Summit 버튼이 생성되지 않습니다. 회원가입 후 다시 시도해주세요!")
-if "is_submitted" not in st.session_state:
-    st.session_state.is_submitted = False
-def load_data():
-    try:
-        r = requests.get(url)
-        d= r.json()
 
-        return d
-
-    except ConnectionError:
-        st.write("서버가 불안정합니다. 다시 접속해주세요 !")
-
-
-# 동적 파라미터를 위한 초기 딕셔너리
-def show_update():
-    logindata = load_data()
-    for i in range(len(logindata)):
-        if logindata[i]['id']==user_id:
-            if st.button("Summit"):
-                patch_data()
-    
-def patch_data():
-
-    # 동적 파라미터를 위한 초기 딕셔너리
+def patch_data(user_id):
+    # 동적 파라미터를 위한 입력 필드
     user_firstname = st.text_input("Firstname")
     user_lastname = st.text_input("Lastname")
     user_passwd = st.text_input("Password")
@@ -37,21 +10,49 @@ def patch_data():
     user_gender = st.text_input("Gender")
     user_birthday = st.text_input("Birthday")
     user_phonenumber = st.text_input("Phonenumber")
-    
+
+    # API URL (user_id를 포함)
     url = f'http://localhost:8888/login/{user_id}'  # 본인의 URL로 수정
     headers = {'Content-Type': 'application/json'}
-    params = {"firstname":f"{user_firstname}", "lastname":f"{user_lastname}", "passwd":f"{user_passwd}", "email":f"{user_email}",  "gender":f"{user_gender}", "birthday":f"{user_birthday}", "phonenumber":"{user_phonenumber}"}
-    if st.button("Submit"):  # params가 비어있지 않다면 요청
+
+    # 빈 값을 제외하고 동적으로 params 딕셔너리 구성
+    params = {}
+    if user_firstname:
+        params["firstname"] = user_firstname
+    if user_lastname:
+        params["lastname"] = user_lastname
+    if user_passwd:
+        params["passwd"] = user_passwd
+    if user_email:
+        params["email"] = user_email
+    if user_gender:
+        params["gender"] = user_gender
+    if user_birthday:
+        params["birthday"] = user_birthday
+    if user_phonenumber:
+        params["phonenumber"] = user_phonenumber
+
+    # PATCH 요청 실행
+    if st.button("Submit") and user_id:  # 버튼 클릭 후 유효한 user_id가 있는 경우
         try:
-            if st.status_code==200:
-                r = requests.patch(url=url, headers=headers, json=params)
+            # PATCH 요청
+            r = requests.patch(url=url, headers=headers, json=params)
+            # 응답 상태 코드 확인
+            if r.status_code == 200:
                 st.write(f"{user_id}님의 정보가 수정되었습니다!")
             else:
-                st.write("서버가 불안정합니다. 다시 시도해주세요")
-        except:
-            st.write(f"다시 시도해주세요")
+                st.write(f"서버 오류 발생: {r.status_code}. 다시 시도해주세요.")
+        except Exception as e:
+            st.write(f"오류 발생: {e}")
     else:
-        st.write("정보를 입력 후 summit 버튼을 눌러주세요")
+        st.write("정보를 입력 후 Submit 버튼을 눌러주세요.")
 
+# 수정할 사용자 ID를 입력 받는 함수
+def show_update():
+    user_id = st.text_input("수정할 사용자 ID를 입력하세요")
+    if user_id and st.button("Load User"):
+        patch_data(user_id)
 
-show_update()       
+# 메인 함수 호출
+show_update()
+

@@ -4,7 +4,7 @@ import datetime
 
 # 페이지 상태를 초기화 (페이지 상태를 세션에서 관리)
 if 'page' not in st.session_state:
-    st.session_state['page'] = 'signup'
+    st.session_state['page'] = None
 if 'id_check' not in st.session_state:
     st.session_state['id_check'] = None  # 아이디 중복 확인 결과 상태
 
@@ -55,10 +55,10 @@ def check_userid(userid):
 
 # 페이지 이동 함수
 def redirect_page():
-    if st.session_state['page'] == 'signup':
-        show_signup_form()
-    elif st.session_state['page'] == 'success':
+    if st.session_state['page'] == 'success':
         show_success_page()
+    else:
+        show_signup_form()
 
 # 회원가입 폼
 def show_signup_form():
@@ -98,6 +98,7 @@ def show_success_page():
     st.title("가입이 완료되었습니다!")
     st.success("환영합니다!")
     st.page_link("login.py", label="로그인")
+    st.write(st.session_state)
 
 
 # 메인 로직 (페이지 이동 처리)

@@ -3,7 +3,7 @@ import requests as reqs
 
 import os
 
-from urllib.parse import urlencode
+st.session_state['page'] = None
 
 if 'id_check' in st.session_state:
     st.session_state['id_check'] = None

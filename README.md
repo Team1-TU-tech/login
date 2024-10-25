@@ -9,6 +9,9 @@
 <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=Streamit&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=Spring Boot&logoColor=F5F7F8"/>   <img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=F5F7F8"/>
 
 
+## 개발기간
+`2024.10.24 ~ 2024.10.25 (총 2일)`
+
 
 ## 주요 기능 
 - 전체 회원 정보 조회`GET`

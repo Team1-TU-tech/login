@@ -43,10 +43,11 @@ def check_userid(userid):
         r = requests.get(url)
         if r.status_code == 200:  # 아이디가 존재할 때
             st.session_state['id_check'] = '이미 존재하는 아이디입니다.'
-        elif r.status_code == 404:  # 아이디가 존재하지 않을 때
+        elif r.status_code == 500:  # 아이디가 존재하지 않을 때
             st.session_state['id_check'] = '사용 가능한 아이디입니다.'
-        else:
-            st.session_state['id_check'] = '아이디 확인 중 문제가 발생했습니다.'
+            st.write(f"Status Code: {r.status_code}")
+        #else:
+        #    st.session_state['id_check'] = '아이디 확인 중 문제가 발생했습니다.'
     except requests.ConnectionError:
         st.write("서버가 불안정합니다.")
         st.session_state['id_check'] = '서버 연결 실패'
@@ -69,8 +70,8 @@ def show_signup_form():
     if st.button("아이디 중복 확인"):
         if check_userid(userid): # 아이디 중복 확인 요청
             st.write(st.session_state['id_check'])
-    if st.session_state['id_check']:
-        st.write(st.session_state['id_check'])  # 중복 확인 결과 출력
+        if st.session_state['id_check']:
+            st.write(st.session_state['id_check'])  # 중복 확인 결과 출력
 
     passwd = st.text_input("비밀번호", type="password")
     email = st.text_input("이메일")

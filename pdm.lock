@@ -3,9 +3,9 @@
 
 [metadata]
 groups = ["default"]
-strategy = ["cross_platform", "inherit_metadata"]
+strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:31a2067081f5f027402608a02542b377e45b130e6b9867514fbc03e02a5904b5"
+content_hash = "sha256:8a0a0cf4122b06f4c14fa8cdf42b1423e55d016362c72a949b32f0c1ff547167"
 
 [[metadata.targets]]
 requires_python = ">=3.11"
@@ -275,6 +275,19 @@ dependencies = [
 files = [
     {file = "jsonschema_specifications-2024.10.1-py3-none-any.whl", hash = "sha256:a09a0680616357d9a0ecf05c12ad234479f549239d0f5b55f3deea67475da9bf"},
     {file = "jsonschema_specifications-2024.10.1.tar.gz", hash = "sha256:0f38b83639958ce1152d02a7f062902c41c8fd20d558b0c34344292d417ae272"},
+]
+
+[[package]]
+name = "login"
+version = "0.1.0"
+requires_python = ">=3.11"
+path = "./."
+summary = "Default template for PDM package"
+groups = ["default"]
+dependencies = [
+    "bcrypt>=4.2.0",
+    "login @ file:///${PROJECT_ROOT}/.",
+    "streamlit>=1.39.0",
 ]
 
 [[package]]

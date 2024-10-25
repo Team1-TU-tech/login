@@ -8,5 +8,8 @@ src/login.egg-info/dependency_links.txt
 src/login.egg-info/requires.txt
 src/login.egg-info/top_level.txt
 src/login/pages/callback.py
-src/login/pages/회원정보변경.py
-src/login/pages/회원탈퇴.py
+src/login/pages/findID.py
+src/login/pages/findPW.py
+src/login/pages/signup.py
+src/login/pages/user_deletion.py
+src/login/pages/user_update.py

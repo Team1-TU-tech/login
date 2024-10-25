@@ -6,7 +6,6 @@ st.write("### ID를 입력 후 `ENTER`를 눌러주세요!")
 user_id = st.text_input("아이디","")
 url =f'http://localhost:8888/login'
 #url =f'http://localhost:8888/login/{user_id}'ID
-st.write("#### 회원정보가 없으면 상세 정보 입력란이 보이지 않습니다. 회원가입 후 다시 시도해주세요!")
 
 if "is_submitted" not in st.session_state:
     st.session_state.is_submitted = False
@@ -14,7 +13,7 @@ if "is_submitted" not in st.session_state:
 if st.button("탈퇴하기"):
     st.switch_page("pages/user_deletion.py")
 
-
+# 비밀번호 비교를 위한 데이터 로드
 def load_data():
     try:
         r = requests.get(url)
@@ -27,16 +26,15 @@ def load_data():
     if st.button("탈퇴하기"):
         st.switch_page("pages/user_deletion.py")
 
-# 동적 파라미터를 위한 초기 딕셔너리
+# 비밀번호가 같으면 정보변경 함수 호출
 def show_update():
     logindata = load_data()
     for i in range(len(logindata)):
         if logindata[i]['id']==user_id:
             patch_data()
 
+# 회원정보변경
 def patch_data():
-
-    # 동적 파라미터를 위한 초기 딕셔너리
     user_firstname = st.text_input("이름")
     user_lastname = st.text_input("성")
     user_passwd = st.text_input("비밀번호",type='password')
@@ -59,7 +57,7 @@ def patch_data():
         except:
             st.write(f"다시 시도해주세요")
     else:
-        st.write("정보를 입력 후 summit 버튼을 눌러주세요")
+        st.write("정보를 입력 후 submit 버튼을 눌러주세요")
 
 
 show_update()  

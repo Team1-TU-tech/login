@@ -114,7 +114,7 @@ def main_app():
 
     if st.session_state['klogin_token']==None:
         if columns[-1].button("회원정보 수정"):
-            st.switch_page("pages/back_user_update.py")
+            st.switch_page("pages/user_update.py")
 
 # 세션 상태 초기화
 if 'logged_in' not in st.session_state:

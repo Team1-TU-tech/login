@@ -78,7 +78,7 @@ def login_screen():
     st.title("로그인")
     userid = st.text_input("ID", key="userid_input_1")
     password = st.text_input("PASSWORD", type="password", key="password_input_1")
-    columns = [i for i in st.columns([2,4,3,3])]
+    columns = [i for i in st.columns([6.3,2,2.3,2.6])]
  
     kakao_login()     # 카카오 로그인 버튼
     
@@ -101,20 +101,20 @@ def login_screen():
 
 # 메인 애플리케이션 화면 (로그인 후 접근 가능)
 def main_app():
-    st.title("TU-Universe-Tech")
+    st.title("TU-Tech")
     
-    st.write(f"환영합니다, {st.session_state['id']}님!")
+    st.write(f"#### 환영합니다,  {st.session_state['id']}님!")
     #st.write(st.session_state)
     columns=[i for i in st.columns(5)]
     if st.session_state['klogin_token']:
         columns[0].link_button("Logout", url=logout_kakao())
     else:
-        if columns[0].button("Logout"):
+        if columns[0].button("로그아웃"):
             logout()
 
     if st.session_state['klogin_token']==None:
         if columns[-1].button("회원정보 수정"):
-            st.switch_page("pages/user_update.py")
+            st.switch_page("pages/back_user_update.py")
 
 # 세션 상태 초기화
 if 'logged_in' not in st.session_state:

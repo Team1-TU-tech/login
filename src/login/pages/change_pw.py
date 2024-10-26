@@ -2,9 +2,13 @@ import requests
 import streamlit as st  
 import bcrypt
 
-st.title("회원 정보 수정")
-st.write("#### 회원 정보를 수정하려면 ID를 입력 후 `ENTER`를 눌러주세요!")
-user_id = st.text_input("아이디", "")
+st.title("비밀번호 변경")
+st.write("#### 비밀번호 변을경 위해 기존 비밀번호와 새 비밀번호를 입력해주세요!")
+old_passwd = st.text_input("기존 비밀번호", type="password")
+new_passwd = st.text_input("새로운 비밀번호", type="password")
+confirm_passwd = st.text_input("비밀번호 확인", type="password")
+
+
 url = f'http://localhost:8888/login'
 
 # 비밀번호 해시화 함수
@@ -13,9 +17,14 @@ def hash_password(password):
     hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     return hashed.decode('utf-8')  # 문자열로 변환 후 반환
 
+#비밀번호 검증 함수
+def check_password(passwd, hashed):
+    return bcrypt.checkpw(passwd.encode(), hashed.encode())
+
 if "is_submitted" not in st.session_state:
     st.session_state.is_submitted = False
 
+# 회원정보 로
 def load_data():
     try:
         r = requests.get(url)
@@ -25,29 +34,28 @@ def load_data():
         st.write("서버가 불안정합니다. 다시 접속해주세요!")
 
 # 버튼을 위한 열 배치
-splitView = [i for i in st.columns([12,6,2])] 
+splitView = [i for i in st.columns([12,2])] 
 
 # 입력 버튼
 with splitView[0]:
-    if st.button("입력하기", key="insert_button"):
-        st.switch_page("pages/user_deletion.py")
+    if st.button("제출하기", key="insert_button"):
+        update_password()
 
-# 탈퇴하기 버튼
-with splitView[1]:
-    if st.button("탈퇴하기", key="delete_button"):
-        st.switch_page("pages/user_deletion.py")
 
 # back 버튼
-with splitView[2]:  
+with splitView[1]:  
     if st.button("뒤로가기", key="back_button"):
         st.session_state['page'] = None
         st.session_state['id_check'] = None
         st.switch_page("login.py")
 
-# 동적 파라미터를 위한 초기 딕셔너리
-def show_update():
+# 기존 비밀번호와 입력한 비밀번호가 일치하는지 확인
+def check_old_password():
     logindata = load_data()
-    if isinstance(logindata, list) and len(logindata)>0 and 'id' in logindata[0]:
+    for data in login data:
+        if check_password(password, data['passwd']):
+            st.
+    # 
         return update_data()
     else:
         st.write("비밀번호가 일치하지 않습니다. 비밀번호 확인 후 다시 시도해 주세요!")

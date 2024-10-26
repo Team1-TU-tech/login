@@ -76,8 +76,8 @@ def logout():
 # 로그인 화면
 def login_screen():
     st.title("로그인")
-    userid = st.text_input("ID", key="userid_input_1")
-    password = st.text_input("PASSWORD", type="password", key="password_input_1")
+    userid = st.text_input("아이디", key="userid_input_1")
+    password = st.text_input("비밀번호", type="password", key="password_input_1")
     columns = [i for i in st.columns([6.3,2,2.3,2.6])]
  
     kakao_login()     # 카카오 로그인 버튼
@@ -114,7 +114,7 @@ def main_app():
 
     if st.session_state['klogin_token']==None:
         if columns[-1].button("회원정보 수정"):
-            st.switch_page("pages/back_user_update.py")
+            st.switch_page("pages/user_update.py")
 
 # 세션 상태 초기화
 if 'logged_in' not in st.session_state:

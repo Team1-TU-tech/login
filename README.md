@@ -29,11 +29,15 @@
 <br></br>
 
 ## 주요 기능 
-- 전체 회원 정보 조회`GET`
-- 특정 회원 정보 조회`GET`
-- 회원가입`POST`
-- 회원 정보 변경`PATCH`
-- 회원 탈퇴`DELETE`
+- 로그인
+- 카카오톡 연동 로그인
+- 아이디 찾기
+- 비밀번호 찾기(이메일 인증)
+- 회원가입
+- 회원 정보 변경
+- 비밀번호 변경
+- 회원 탈퇴
+
 <br></br>
 
 
@@ -61,12 +65,11 @@ CREATE TABLE LOGIN_TB(
 
 ## 사용방법
 
-### DOKER 설치
+### DB, API DOKER 설치
 ```bash
 $ git clone git@github.com:Team1-TU-tech/login.git
 $ docker compose up -d --force-recreate --build
 ```
-
 
 ### API 접속
 - 엔드포인트: http://localhost:8888/login
@@ -74,7 +77,10 @@ $ docker compose up -d --force-recreate --build
 
 ### 사용 명령어 예시 - url
 - 전체 회원 조회 http://localhost:8888/login
-- 특정 회원 조회 http://localhost:8888/login/find?id=tut
+- 특정 회원 조회 http://localhost:8888/login/find?id=<user_id>
+- 특정 회원 이메일조회 http://localhost:8888/login/find?passwd=<user_password>
+- 특정 회원 전화번호조회 http://localhost:8888/login/find?email=<user_email>
+  
 <br></br>
 
 ### 사용 명령어 예시 - 프롬프트
@@ -101,19 +107,23 @@ $ streamlit run src/login/login.py --server.port 8501
 
 ## 시연영상
 ### 회원가입
-https://github.com/user-attachments/assets/234f6914-1d24-4d23-88d5-552d2f98cc65
+https://github.com/user-attachments/assets/6b42cf60-7caf-4680-a5cc-1795d0253227
 
 ### 로그인, 로그아웃
-https://github.com/user-attachments/assets/49148f7d-8856-49c2-baf5-4f8a488defc8
+https://github.com/user-attachments/assets/1f4404b4-4e58-49c1-bdda-a6f80e7b22dc
 
-### 카카오 로그인
+### 카카오 로그인(수정)
 https://github.com/user-attachments/assets/1cb11a56-3f46-4fd6-a9e6-04cbb11d6708
 
 ### 회원정보 수정
-https://github.com/user-attachments/assets/821fd40b-1ca9-4936-9fb4-7ceb93ad3be4
+https://github.com/user-attachments/assets/5400e109-d1fa-47d5-826f-def736425cbd
 
-### 탈퇴
-https://github.com/user-attachments/assets/fee8cbb5-b355-487f-b5cc-9a393f2a77e0
+### 회원  탈퇴
+https://github.com/user-attachments/assets/5b922018-4cc9-42d5-b45a-6d04f9d39bbb
+
+### 비밀번호 변경
+https://github.com/user-attachments/assets/d38214d4-a3fd-40e0-a9dc-31c3a08840e3
+
 
 <br></br>
 
@@ -144,7 +154,7 @@ https://github.com/user-attachments/assets/fee8cbb5-b355-487f-b5cc-9a393f2a77e0
 - 카카오 로그인 연동: `김태민`, `오지현`
 - API 개발: `정미은`, `함선우`
 - 로그인 화면 구현: `김태민`, `함선우`, `오지현`
-- 회원탈퇴 및 회원 정보 변경 화면 구현: `정미은`
+- 회원탈퇴, 회원 정보 변경 및 비밀번호 변경 화면 구현: `정미은`
 - 회원가입 화면 구현: `함선우`
 - 데이터베이스 설계 및 구축: `정미은`, `함선우`
 - 세션 버그 수정: `김태민`

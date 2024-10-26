@@ -33,7 +33,7 @@ def update_user_info(user_id, updated_info):
 # 세션 상태에서 아이디 확인
 if 'id' in st.session_state and st.session_state['logged_in']:
     st.title("회원 정보 변경")
-    st.write("#### 변경을 원하시는 정보를 입력해주세요")
+    st.write("##### 변경을 원하시는 정보를 입력 후 제출하기 버튼을 눌러주세요")
     
     # 로그인한 사용자 정보 불러오기
     user_id = st.session_state['id']
@@ -52,7 +52,7 @@ if 'id' in st.session_state and st.session_state['logged_in']:
         user_phonenumber = st.text_input("전화번호", value=user_info.get("phonenumber", ""))
         
         # 수정하기 및 뒤로가기 버튼 배치할 열 
-        splitView = [i for i in st.columns([12,2])]
+        splitView = [i for i in st.columns([5.7,2.5,2,1.8])]
         
         # 수정하기 버튼
         with splitView[0]:
@@ -68,10 +68,23 @@ if 'id' in st.session_state and st.session_state['logged_in']:
                 }
                 update_user_info(user_id, updated_info)
 
-        # 뒤로가기
+        # 비밀번호 변경하기
         with splitView[1]:
+            if st.button("비밀번호 변경"):
+                st.session_state['page'] =None
+                st.session_state['id_check']=None
+                st.swith_page("pages/change_pw.py")
+
+        with splitView[2]:
+            if st.button("회원 탈퇴"):
+                st.session_state['page'] =None
+                st.session_state['id_check']=None
+                st.swith_page("pages/user_deletion.py")
+
+        # 뒤로가기
+        with splitView[3]:
             if st.button("뒤로가기", key="back_button_in_patch"):
                 st.session_state['page'] = None
                 st.session_state['id_check'] = None
                 st.switch_page("login.py")
-
+        

@@ -24,31 +24,31 @@ if 'id' in st.session_state and st.session_state['logged_in']:
     user_passwd = st.text_input("비밀번호 확인",type="password")
 
 # 버튼 나누기
-splitView = [i for i in st.columns([12, 2])]  
+    splitView = [i for i in st.columns([12, 2])]  
 
-with splitView[0]:  # 확인 버튼
-    if st.button("제출하기", key="submit_button"):
-        pwdata=load_data()
-        for pw in pwdata:
-            if check_password(user_passwd, pw['passwd']):
-                try:
-                    user_id = st.session_state['id']
-                    url = f'http://localhost:8888/login/{user_id}'
-                    r = requests.delete(url)
-                    if r.status_code == 200:
-                        st.write(f"{user_id}님의 탈퇴가 완료되었습니다. 다음에 다시 만나요!😥")
-                        time.sleep(1)
-                        for k, v in st.session_state.items():
-                            st.session_state[k] = None
-                            st.switch_page("login.py")
-                    else:
-                        st.write(f"{user_id}님의 정보가 없습니다. ID를 다시 확인한 후 입력해주세요!")
-                except Exception as e:
-                    st.write('페이지가 응답하지 않습니다. 다시 접속해 주세요!')
-            else:
-                st.write("비밀번호가 일치하지 않습니다. 확인 후 다시 시도해주세요")
+    with splitView[0]:  # 확인 버튼
+        if st.button("제출하기", key="submit_button"):
+            pwdata=load_data()
+            for pw in pwdata:
+                if check_password(user_passwd, pw['passwd']):
+                    try:
+                        user_id = st.session_state['id']
+                        url = f'http://localhost:8888/login/{user_id}'
+                        r = requests.delete(url)
+                        if r.status_code == 200:
+                            st.write(f"{user_id}님의 탈퇴가 완료되었습니다. 다음에 다시 만나요!😥")
+                            time.sleep(1)
+                            for k, v in st.session_state.items():
+                                st.session_state[k] = None
+                                st.switch_page("login.py")
+                        else:
+                            st.write(f"{user_id}님의 정보가 없습니다. ID를 다시 확인한 후 입력해주세요!")
+                    except Exception as e:
+                        st.write('페이지가 응답하지 않습니다. 다시 접속해 주세요!')
+                else:
+                    st.write("비밀번호가 일치하지 않습니다. 확인 후 다시 시도해주세요")
 
-with splitView[1]:  # back 버튼
-    if st.button("뒤로가기"):
-        st.switch_page("pages/user_update.py")
+    with splitView[1]:  # back 버튼
+        if st.button("뒤로가기"):
+            st.switch_page("pages/user_update.py")
 

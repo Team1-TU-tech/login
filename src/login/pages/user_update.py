@@ -44,7 +44,7 @@ if 'id' in st.session_state and st.session_state['logged_in']:
         user_firstname = st.text_input("이름", value=user_info.get("firstname", ""))
         user_lastname = st.text_input("성", value=user_info.get("lastname", ""))
         user_email = st.text_input("이메일", value=user_info.get("email", ""))
-        user_gender = st.selectbox("성별", ['F', 'M'], index=None if user_info.get("gender") == 'F' else 1)
+        user_gender = st.selectbox("성별", ['F', 'M'], index=0 if user_info.get("gender") == 'F' else 1)
 
         birthday_str = user_info.get("birthday")
         birthday_value=datetime.strptime(birthday_str,"%Y-%m-%d")

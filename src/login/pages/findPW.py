@@ -60,7 +60,7 @@ st.title("패스워드 찾기")
 id = st.text_input("아이디", key="id")
 email = st.text_input("이메일", key="email")
 
-splitView = [i for i in st.columns([12, 1])]
+splitView = [i for i in st.columns([12, 2])]
 
 # 찾기 버튼 클릭 시
 if splitView[0].button("찾기"):
@@ -98,5 +98,5 @@ if splitView[0].button("찾기"):
         st.error("모두 입력!")
 
 # 뒤로가기 버튼
-if splitView[-1].button("🔙"):
+if splitView[-1].button("뒤로가기"):
     st.switch_page("login.py")

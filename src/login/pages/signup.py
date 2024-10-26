@@ -101,7 +101,7 @@ def show_signup_form():
     phonenumber = st.text_input("전화번호")
 
     # 가입하기 및 back 버튼을 배치할 열 구성
-    splitView = [i for i in st.columns([12, 1])]  
+    splitView = [i for i in st.columns([12, 2])]  
 
     with splitView[0]:
         if st.button("가입하기"):
@@ -113,7 +113,7 @@ def show_signup_form():
                 st.error("아이디 중복 확인을 해주세요.")
 
     with splitView[1]:
-        if st.button("🔙"):
+        if st.button("뒤로가기"):
             st.session_state['page'] = None
             st.session_state['id_check'] = None
             st.switch_page("login.py")

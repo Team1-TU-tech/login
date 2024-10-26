@@ -78,16 +78,17 @@ def login_screen():
     st.title("로그인")
     userid = st.text_input("ID", key="userid_input_1")
     password = st.text_input("PASSWORD", type="password", key="password_input_1")
-    columns = [i for i in st.columns(5)]
+    columns = [i for i in st.columns([2,4,3,3])]
+ 
     kakao_login()     # 카카오 로그인 버튼
     
-    if columns[0].button("Login"):
+    if columns[0].button("로그인"):
         if userid and password:  # 입력된 값이 있는지 확인
             login(userid, password)
         else:
             st.error("아이디와 비밀번호를 입력해주세요.")
 
-    if columns[1].button("회원 가입"):
+    if columns[1].button("회원가입"):
         st.switch_page("pages/signup.py")
 
     if columns[2].button("아이디 찾기"):

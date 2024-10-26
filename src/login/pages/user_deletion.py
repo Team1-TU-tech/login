@@ -41,12 +41,16 @@ if 'id' in st.session_state and st.session_state['logged_in']:
                             for k, v in st.session_state.items():
                                 st.session_state[k] = None
                                 st.switch_page("login.py")
+                                break
                         else:
                             st.write(f"{user_id}님의 정보가 없습니다. ID를 다시 확인한 후 입력해주세요!")
+                            break
                     except Exception as e:
                         st.write('페이지가 응답하지 않습니다. 다시 접속해 주세요!')
+                        break
                 else:
                     st.write("비밀번호가 일치하지 않습니다. 확인 후 다시 시도해주세요")
+                    break
 
     with splitView[1]:  # back 버튼
         if st.button("뒤로가기"):

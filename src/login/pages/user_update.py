@@ -2,20 +2,9 @@ import streamlit as st
 import requests as reqs
 from datetime import datetime
 
-
 # 로그인된 사용자 정보를 가져오는 함수
 def load_user_info(user_id):
-
-    if not user_id:  # user_id가 없으면 API 호출을 하지 않음
-        st.error("사용자 ID가 없습니다. 다시 로그인 해주세요.")
-        st.session_state.clear()  # 세션 전체 초기화
-        st.switch_page("login.py")
-        return None
-    
     url = f'http://localhost:8888/login/find?id={user_id}'  
-    
-    # 오류시 확인용 호출하는 URL 출력 ######
-    # st.write(f"API 호출: {url}")  # 호출하는 URL 출력
     try:
         response = reqs.get(url)
         if response.status_code == 200:

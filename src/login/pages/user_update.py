@@ -74,6 +74,7 @@ if 'id' in st.session_state and st.session_state['logged_in']:
                 st.session_state['id_check']=None
                 st.switch_page("pages/change_pw.py")
 
+
         with splitView[2]:
             if st.button("회원 탈퇴"):
                 st.session_state['page'] =None

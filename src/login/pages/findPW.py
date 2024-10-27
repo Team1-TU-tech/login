@@ -6,6 +6,7 @@ import random
 import string
 import bcrypt
 import os
+import time
 
 # 무작위 비밀번호 생성 함수
 def generate_random_password(length=8):
@@ -86,6 +87,9 @@ if splitView[0].button("찾기"):
                     r = reqs.patch(url=url, headers=headers, json=params)
                     if r.status_code == 200:
                         st.success(f"{id}님의 비밀번호가 임시 비밀번호로 업데이트되었습니다!")
+                        time.sleep(0.7)
+                        st.session_state.clear()  # 세션 전체 초기화
+                        st.switch_page("login.py")
                     else:
                         st.warning("서버가 불안정합니다. 다시 시도해주세요.")
                 except reqs.RequestException:

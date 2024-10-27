@@ -33,7 +33,7 @@
 - 로그인
 - 카카오톡 연동 로그인
 - 아이디 찾기
-- 비밀번호 찾기(이메일 인증)
+- 비밀번호 찾기 (임시 비밀번호 발급)
 - 회원가입
 - 회원 정보 변경
 - 비밀번호 변경
@@ -101,6 +101,8 @@ $ curl -X DELETE "http://localhost:8888/login/hh"
 ## Streamlit 접속
 ```bash
 $ export KAKAO_TOKEN={TOKEN_ID}
+$ export SEND_EMAIL={google email} 
+$ export APP_PW="{google app password}"
 $ streamlit run src/login/login.py --server.port 8501
 ```
 <br></br>
@@ -113,8 +115,14 @@ https://github.com/user-attachments/assets/6b42cf60-7caf-4680-a5cc-1795d0253227
 ### 로그인, 로그아웃
 https://github.com/user-attachments/assets/1f4404b4-4e58-49c1-bdda-a6f80e7b22dc
 
-### 카카오 로그인(수정)
-https://github.com/user-attachments/assets/1cb11a56-3f46-4fd6-a9e6-04cbb11d6708
+### 카카오 로그인
+https://github.com/user-attachments/assets/99804ecd-3c94-487b-9688-8fe9ec30bfc5
+
+### 아이디 찾기
+https://github.com/user-attachments/assets/49af9653-c7c7-440b-a831-f926e61dee44
+
+### 비밀번호 찾기
+https://github.com/user-attachments/assets/c2181261-6af7-4728-b3d7-c728402f53fb
 
 ### 회원정보 수정
 https://github.com/user-attachments/assets/5400e109-d1fa-47d5-826f-def736425cbd
@@ -157,8 +165,9 @@ https://github.com/user-attachments/assets/d38214d4-a3fd-40e0-a9dc-31c3a08840e3
 - 로그인 화면 구현: `김태민`, `함선우`, `오지현`
 - 회원탈퇴, 회원 정보 변경 및 비밀번호 변경 화면 구현: `정미은`
 - 회원가입 화면 구현: `함선우`
+- 비밀번호 찾기 구현: `오지현`
 - 데이터베이스 설계 및 구축: `정미은`, `함선우`
-- 세션 버그 수정: `김태민`
+- 세션 버그 수정: `김태민`, `오지현`
 <br></br>
 
 

@@ -8,6 +8,8 @@ authors = [
 ]
 dependencies = [
     "streamlit>=1.39.0",
+    "bcrypt>=4.2.0",
+    "login @ file:///${PROJECT_ROOT}/",
 ]
 requires-python = ">=3.11"
 readme = "README.md"

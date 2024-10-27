@@ -7,6 +7,14 @@ License: MIT
 Requires-Python: >=3.11
 Description-Content-Type: text/markdown
 Requires-Dist: streamlit>=1.39.0
+Requires-Dist: bcrypt>=4.2.0
+Requires-Dist: login@ file:///${PROJECT_ROOT}/
 
-# TU-tech FINAL PROJECT 
-## 로그인 구현
+# 로그인 페이지 구현  
+## Streamlit 접속
+```bash
+$ export KAKAO_TOKEN={TOKEN_ID}
+$ export SEND_EMAIL={email}
+$ export APP_PW="{app_ID}"
+$ streamlit run src/login/login.py --server.port 8501
+```

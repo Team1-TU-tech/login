@@ -12,15 +12,15 @@ def load_data():
         return get_json
 
     except ConnectionError:
-        st.write("서버가 불안정합니다.")
+        st.error("서버가 불안정합니다.")
 
 
 st.title("아이디 찾기")
-firstName = st.text_input("firstName.", key="firstName")
-lastName = st.text_input("lastName.", key="lastName")
-phoneNumber = st.text_input("phoneNumber.", key="phonenumber")
+firstName = st.text_input("이름", key="firstName")
+lastName = st.text_input("성", key="lastName")
+phoneNumber = st.text_input("전화번호", key="phonenumber")
 
-splitView = [i for i in st.columns(7)]
+splitView = [i for i in st.columns([12, 2])]
 
 if splitView[0].button("찾기"):
     status=True
@@ -33,5 +33,5 @@ if splitView[0].button("찾기"):
             st.warning("일치하는 정보가 없습니다. 입력하신 정보를 다시 확인해주세요")
     else:
         st.error("모두 입력!")
-if splitView[-1].button("🔙"):
+if splitView[-1].button("뒤로가기"):
     st.switch_page("login.py")

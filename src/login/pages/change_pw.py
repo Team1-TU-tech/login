@@ -34,10 +34,11 @@ def update_user_pw(user_id,updated_pw):
         response = requests.patch(url, json=updated_pw, headers=headers)
         if response.status_code == 200:
             st.success(f"{user_id}님의 비밀번호가 성공적으로 변경되었습니다.")
-            for k, v in st.session_state.items():
-                st.session_state[k] = None
-                time.sleep(0.7)
-                st.switch_page("login.py")
+            # for k, v in st.session_state.items():
+            #     st.session_state[k] = None
+            #st.session_state.clear()  # 세션 전체 초기화
+            time.sleep(0.7)
+            st.switch_page("login.py")
         else:
             st.error("비밀번호 변경에 실패했습니다.")
     except requests.ConnectionError:

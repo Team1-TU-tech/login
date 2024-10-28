@@ -156,6 +156,7 @@ https://github.com/user-attachments/assets/d38214d4-a3fd-40e0-a9dc-31c3a08840e3
 - Streamlit 기능 확장: Streamlit의 다양한 기능을 더 적극적으로 활용하여 사용자 경험을 개선할 필요가 있다.
 - [이슈 트래킹 활성화](https://github.com/Team1-TU-tech/login/issues): 작업 과정을 체계적으로 관리할 수 있도록 이슈 업데이트 활성화가 필요하다.
 - 체계적인 Branch 전략 수립: 프로젝트 시작 전 branch 전략을 세우고 체계적으로 운영하여 협업 효율을 높여야 한다.
+- 로그인 기능 구현 시 성능 개선을 위해 redis를 사용해보고 싶다.
 <br></br>
 
 

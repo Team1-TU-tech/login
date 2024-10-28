@@ -2,6 +2,7 @@ import streamlit as st
 import requests as reqs
 from datetime import datetime
 
+
 # 로그인된 사용자 정보를 가져오는 함수
 def load_user_info(user_id):
     url = f'http://localhost:8888/login/find?id={user_id}'  
@@ -73,7 +74,6 @@ if 'id' in st.session_state and st.session_state['logged_in']:
                 st.session_state['page'] =None
                 st.session_state['id_check']=None
                 st.switch_page("pages/change_pw.py")
-
 
         with splitView[2]:
             if st.button("회원 탈퇴"):

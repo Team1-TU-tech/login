@@ -38,11 +38,12 @@ if 'id' in st.session_state and st.session_state['logged_in']:
                         if r.status_code == 200:
                             st.write(f"{user_id}님의 탈퇴가 완료되었습니다. 다음에 다시 만나요!😥")
                             time.sleep(1)
-                            # for k, v in st.session_state.items():
-                            #     st.session_state[k] = None
-                            st.session_state.clear()  # 세션 전체 초기화
-                            st.switch_page("login.py")
-                            break
+                            for k, v in st.session_state.items():
+                                st.session_state[k] = None
+                                st.switch_page("login.py")
+                                time.sleep(0.7)
+                                st.session_state.clear()
+                                break
                         else:
                             st.write(f"{user_id}님의 정보가 없습니다. ID를 다시 확인한 후 입력해주세요!")
                             break

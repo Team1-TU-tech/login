@@ -33,7 +33,7 @@ def load_data(firstname, lastname, id, hashed_passwd, email, gender, birthday, p
             else:
                 st.error("가입에 실패했습니다. 다시 시도해주세요.")
         except Exception as e:
-            st.werror("서버가 불안정하오니 나중에 다시 시도해주세요.")
+            st.error("서버가 불안정하오니 나중에 다시 시도해주세요.")
             st.error(f"오류: {str(e)}")
     else:
         st.error("모든 항목을 입력해 주세요.")

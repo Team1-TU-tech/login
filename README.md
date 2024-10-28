@@ -79,8 +79,8 @@ $ docker compose up -d --force-recreate --build
 ### 사용 명령어 예시 - url
 - 전체 회원 조회 http://localhost:8888/login
 - 특정 회원 조회 http://localhost:8888/login/find?id=<user_id>
-- 특정 회원 이메일조회 http://localhost:8888/login/find?passwd=<user_password>
-- 특정 회원 전화번호조회 http://localhost:8888/login/find?email=<user_email>
+- 특정 회원 이메일조회 http://localhost:8888/login/find?email=<user_email>
+- 특정 회원 전화번호조회 http://localhost:8888/login/find?phonenumber=<user_phone_number>
   
 <br></br>
 
@@ -116,7 +116,7 @@ https://github.com/user-attachments/assets/6b42cf60-7caf-4680-a5cc-1795d0253227
 https://github.com/user-attachments/assets/1f4404b4-4e58-49c1-bdda-a6f80e7b22dc
 
 ### 카카오 로그인
-https://github.com/user-attachments/assets/99804ecd-3c94-487b-9688-8fe9ec30bfc5
+https://github.com/user-attachments/assets/18aecfb3-6e9e-4962-bd8d-304fc686c44e
 
 ### 아이디 찾기
 https://github.com/user-attachments/assets/49af9653-c7c7-440b-a831-f926e61dee44

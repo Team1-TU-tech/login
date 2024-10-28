@@ -45,14 +45,14 @@ def kakao_callback(auth_code):
         user_info = user_info_response.json()
 
         st.session_state['klogin_token'] = access_token
-        st.write(access_token)
+        #st.write(access_token)
 
         # 사용자 정보 표시
         st.write("로그인 성공!")
         st.session_state['id']=user_info["kakao_account"]["profile"]["nickname"]
         st.session_state['logged_in']=True
         st.switch_page("login.py")
-        st.switch_page("login.py")
+        # st.switch_page("login.py")
         # st.write(user_info)
         # st.title("Kakao Logout Example")
         # #st.button("logout", on_click=logout)
